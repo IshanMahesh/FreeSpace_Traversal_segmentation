@@ -32,26 +32,18 @@ Additional Notes: Ensure that the 'obs_detect.sh' script has execute permissions
 
     chmod +x obs_detect.sh
 
-### Extracting depth and RGB images and point clouds for ros2 bags
-
-The 'ros2_ws' folder is the workspace directory created to download the information published on the topics of interest, necessary for generating the first part of the training dataset,
-the launch file 'get_node_data.launch.py' must be executed; it will run the nodes responsible for obtaining RGB images, depth images, and the point cloud.
-
-The storage of information is carried out in the following folders:
-
-    RGB images: image_data
-    
-    Depth images: dense_depth
-    
-    PointCloud: lidar_data
+### Extracting depth, RGB images and point clouds 
 
 
 
-Additionally, the following files are generated: 
-  
-    calib: Contains the camera calibration data.
-    
-    video_data: Generates a video from the RGB images.
+
+
+
+
+
+
+
+
 
 
 
