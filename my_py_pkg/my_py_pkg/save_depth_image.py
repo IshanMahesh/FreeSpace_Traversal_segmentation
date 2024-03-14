@@ -12,18 +12,19 @@ class DepthImageSaver(Node):
     def __init__(self):
         super().__init__('depth_image_saver')
         self.subscription = self.create_subscription(Image,'/front_camera/depth/image_raw',self.image_callback,10)
-        self.save_directory = '/home/data/polytunnel_dataset/dense_depth'
+        self.save_directory = '/home/data/unsynchronized_dataset/datasets/ORFD/testing/dense_depth'
         os.makedirs(self.save_directory, exist_ok=True)
         self.bridge = CvBridge()
         self.image_count = 0
 
     def image_callback(self, msg):
         print("Received a depth image!")
+
+
+
+
         #change the image from ROS to NumPy using CvBridge         
         cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
-
-        
-
         if np.nanmax(cv_image) > 0:
             
             cv_image = np.nan_to_num(cv_image, nan=0.0)    

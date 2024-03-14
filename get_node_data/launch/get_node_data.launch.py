@@ -17,8 +17,13 @@ def generate_launch_description():
         package="my_py_pkg",
         executable="save_depth_image"
     )
+    # subscriber_synchronizer_node= Node(
+    #     package="my_py_pkg",
+    #     executable="sync_node"
+    # )
     ld.add_action(rgb_subscriber_node)
     ld.add_action(pointCloud_subscriber_node)
     ld.add_action(depthImage_subscriber_node)
+    #ld.add_action(subscriber_synchronizer_node)
     
     return ld

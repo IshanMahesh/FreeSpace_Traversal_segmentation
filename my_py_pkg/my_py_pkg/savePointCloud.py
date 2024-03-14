@@ -11,7 +11,7 @@ class PointCloudSaver(Node):
     def __init__(self):
         super().__init__('point_cloud_saver')
         self.subscription = self.create_subscription(PointCloud2,'/front_camera/points',self.point_cloud_callback,10)
-        self.save_directory = '/home/data/polytunnel_dataset/lidar_data'
+        self.save_directory = '/home/data/unsynchronized_dataset/datasets/ORFD/testing/lidar_data'
         os.makedirs(self.save_directory, exist_ok=True)
         self.point_cloud_count = 0
 

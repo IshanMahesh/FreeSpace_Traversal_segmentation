@@ -14,11 +14,11 @@ class RgbImageSaver(Node):
         self.bridge = cv_bridge.CvBridge()
         self.subscription = self.create_subscription(Image, '/front_camera/image_raw', self.image_callback, 10)
         #create directories
-        self.save_directory_video = '/home/data/polytunnel_dataset/video_data'
+        self.save_directory_video = '/home/data/unsynchronized_dataset/datasets/ORFD/testing/video_data'
         os.makedirs(self.save_directory_video, exist_ok=True)
-        self.save_directory_image = '/home/data/polytunnel_dataset/image_data'
+        self.save_directory_image = '/home/data/unsynchronized_dataset/datasets/ORFD/testing/image_data'
         os.makedirs(self.save_directory_image, exist_ok=True)
-        self.save_directory_txt = '/home/data/polytunnel_dataset/calib'
+        self.save_directory_txt = '/home/data/unsynchronized_dataset/datasets/ORFD/testing/calib'
         os.makedirs(self.save_directory_txt, exist_ok=True)
 
         self.video_writer = None    

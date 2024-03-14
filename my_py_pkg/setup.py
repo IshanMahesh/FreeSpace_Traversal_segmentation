@@ -20,9 +20,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [           
-            "save_rgb_image = my_py_pkg.saveImage:main",
-            "save_point_Cloud = my_py_pkg.savePointCloud:main",
-            "save_depth_image = my_py_pkg.save_depth_image:main"
+            "save_rgb_image    = my_py_pkg.saveImage:main",
+            "save_point_Cloud  = my_py_pkg.savePointCloud:main",
+            "save_depth_image  = my_py_pkg.save_depth_image:main",
+            "sync_node         = my_py_pkg.synchronizer_node:main"
 
         ],
     },
