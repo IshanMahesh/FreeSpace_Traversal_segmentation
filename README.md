@@ -72,7 +72,7 @@ To collect data, two sensors are mounted on a structure located atop a [Hunter 2
   |                                                                        |
   |                                                                        |
   |                                                                        |
-Floor______________________________________________________________________|___________________
+__|__________________________Floor_________________________________________|___________________
 ```
 ### Extracting Depth images, RGB images and point clouds from a ROS2 topic in a synchronized manner.
 
