@@ -14,7 +14,7 @@ The project is founded on the precedent set by the following project ["ORFD: Off
 
 ## Introduction
 
-The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main), el dataset generado cuenta con un total de 34,684 datos y se ncuentra disponible en [polytunnel_dataset][https://drive.google.com/file/d/1egS08WVoOzbN0vwSiknT8DT6aaipX_3V/view?usp=sharing]
+The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main), el dataset generado cuenta con un total de 34,684 datos y se ncuentra disponible en [polytunnel_dataset](https://drive.google.com/file/d/1egS08WVoOzbN0vwSiknT8DT6aaipX_3V/view?usp=sharing)
 
 El proyecto se divide en 3 secciones:
 
@@ -189,8 +189,8 @@ The folders 'lidar_data', 'dense_depth', 'image_data', 'calib', and 'gt_image' a
 The location of 'datasets', which is the folder containing all the information, must be the same as the path for 'test.sh' and 'train.sh' so that the program can access the information.
 
 
-
-
+## Prueba del modelo OFF-Net 
+los resultados obteenidos se presentan el en siguiente demo, la imagen de la izqierda es la imagen rgb, la imagen centras es una magen de profundidad y la imaen de la izquierda es la unidon de la imagen rgb, prediccion del modelo y una mascara que coloca en color verde las prediccioes del modelo para un espacio transitable por el robot. 
 
 
 
