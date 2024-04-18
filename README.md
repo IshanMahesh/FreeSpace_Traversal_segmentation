@@ -2,46 +2,40 @@
 The project is founded on the precedent set by the following project ["ORFD: Off-Road-Freespace-Detection
 "](https://github.com/chaytonmin/Off-Road-Freespace-Detection/tree/main).
 
+## Project Overview 
+
+The ORFD project has been resumed to test its implementation in detecting pathways in polytunnels dedicated to strawberry harvesting. The repository with modifications to the original code can be found here: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main), The generated dataset includes a total of 34,684 data and is available at [polytunnel_dataset](https://drive.google.com/file/d/1egS08WVoOzbN0vwSiknT8DT6aaipX_3V/view?usp=sharing)
 
 
+**Project Structure**
+
+The project is divided into three sections:
+
+- Data Collection
+ 
+- Generation of the polytunnel_dataset
+ 
+- Testing the OFF-Net model trained with the ORFD dataset
+
+**Repository Contents**
+
+- The free_space_segmentation folder contains the package created for extracting information from bag files.
+  
+- The docker folder includes a shell script, the usage of which is explained later.
+
+- The python_code folder contains the code needed to extract the ground truth images (gt_image).
 
 
-
-
-
-
-
-
-## Introduction
-
-The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main), el dataset generado cuenta con un total de 34,684 datos y se ncuentra disponible en [polytunnel_dataset](https://drive.google.com/file/d/1egS08WVoOzbN0vwSiknT8DT6aaipX_3V/view?usp=sharing)
-
-El proyecto se divide en 3 secciones:
-
-Colectar datos 
-
-generacion de un politunel_dataset 
-
-prueba del modelo OFF-Net entrenado con el dataset de ORFD
-
-
-
-the 'Free space segmentation' folder es el paquete genrado para la extraccion de infromacion de los bagfiles,  The 'docker' folder contains a shell file el cual se explica su uso mas adelante y en 
-el folder 'python_code' se encuentra el codigo para extraer el gt_image. 
-
-
-
-
-### Preparacion del entrono de trabajo 
+### Setting Up the Work Environment
 
 #### Instruction for running the docker image
 
- The 'docker' folder contains a shell file. This file must be downloaded to the host and executed using the following commands:
+The docker folder contains a shell file. This file must be downloaded to the host and executed using the following commands:
  
  To start the container for the first time, execute the following command:
  
-     cd <the directory where the 'obs_detect.sh' file is located>
-     ./obs_detect.sh run
+    cd <the directory where the 'obs_detect.sh' file is located> 
+    ./obs_detect.sh run
      
 This command sets up and runs a new container using the 'adriavdocker/obsdetection:v2' image 
 
@@ -62,18 +56,11 @@ Additional Notes: Ensure that the 'obs_detect.sh' script has execute permissions
     chmod +x obs_detect.sh
 
 
+## Data Collection 
 
+### Physical Setup of Sensors on the Robot
 
-
-
-
-## Colectando datos  
-
-### indicaciones fisicas de como se colocaro los sensores en el robot para colectar los datos 
-
-para colectar datos se fijan dos sensores a una estructura ubicada sobre un [Hunter 2.0](https://docs.trossenrobotics.com/agilex_hunter_20_docs/), el primer es
-un LiDAR [LIVOX-MID360](https://www.livoxtech.com/mid-360) y [ZED 2 Stereo Camera](https://store.stereolabs.com/en-gb/products/zed-2), estos sensores ubicados uno sobre el otro, como se muestra en el diagrama sigueinte: 
-
+To collect data, two sensors are mounted on a structure located atop a [Hunter 2.0](https://docs.trossenrobotics.com/agilex_hunter_20_docs/). The first is a LiDAR [LIVOX-MID360](https://www.livoxtech.com/mid-360) and the second is a [ZED 2 Stereo Camera](https://store.stereolabs.com/en-gb/products/zed-2). These sensors are stacked one above the other, as illustrated in the following diagram:
 ```
                                                                     _____LiDAR______
 2.25 ft----------------- Camera height------------------------------__depth_camera__
@@ -87,17 +74,15 @@ un LiDAR [LIVOX-MID360](https://www.livoxtech.com/mid-360) y [ZED 2 Stereo Camer
   |                                                                        |
 Floor______________________________________________________________________|____________________________________________
 ```
-
-
 ### Extracting Depth images, RGB images and point clouds from a ROS2 topic in a synchronized manner.
 
-To obtain information in a synchronized manner (for the ORFD project, this is mandatory), the data_synchronizer node should be executed:
+**To obtain information in a synchronized manner (for the ORFD project, this is mandatory), the data_synchronizer node should be executed:**
  
     ros2 run free_space_segmentation sync_node 
 
 The root path where the information is stored is:
 
-- '/home/data/synchronized_dataset/datasets/ORFD/testing/sequence/****'
+- /home/data/synchronized_dataset/datasets/ORFD/testing/sequence/****
 
 The folders created to store the information are:
 
@@ -107,43 +92,44 @@ The folders created to store the information are:
     depth_image: dense_depth 
 
     
-si no se re quiere extraer la infromacion de una manera sincronizada, entonces: 
+**Extracting RGB Images, Point Clouds, and Depth Images Individually**
 
 
-para extraer unicamente rgb_image se debe ejecutar el sigueinte comando 
+To extract only the RGB images, execute the following command:
 
     ros2 run free_space_segmentation save_rgb_image
 
-este comando almacena las imagenes rgb y los datos de calibracion de la capara y sensor lidar
+This command stores the RGB images and calibration data for the camera and LiDAR sensor.
 
 The root path where the information is stored is:
-    /home/data/unsynchronized_dataset/datasets/ORFD/testing/image_data
-    /home/data/unsynchronized_dataset/datasets/ORFD/testing/calib'
+
+- /home/data/unsynchronized_dataset/datasets/ORFD/testing/image_data
+- /home/data/unsynchronized_dataset/datasets/ORFD/testing/calib
 
 
 
 
-para extraer unicamente nueve de putos se debe ejecutar el sigueinte comando
+To extract only point clouds, execute the following command:
 
      ros2 run free_space_segmentation save_point_Cloud 
 
-este comando almecena la nueve de puntos generada por el sensor lidar como un archivo .bin 
+This command saves the point cloud generated by the LiDAR sensor as a .bin file. 
 
 The root path where the information is stored is:
 
-'/home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/lidar_data'
+- /home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/lidar_data
 
 
 
 
 
-para estraer unicamente las imagens de profundidad se debe ejecutar el sigueinte comando
+To extract only depth images, execute the following command:
 
       ros2 run free_space_segmentation save_depth_image 
 
 
 The root path where the information is stored is:
-     '/home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/dense_depth'
+- /home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/dense_depth
 
 
 
@@ -153,7 +139,32 @@ The root path where the information is stored is:
 
 
 
-### Instructions for creating a training dataset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Instructions for creating a testing dataset
 
 With the folders generated previously, the only thing left to do is to generate gt_image. To accomplish this, the [Supervisely](https://supervisely.com/) platform is used.
 
@@ -189,11 +200,34 @@ The folders 'lidar_data', 'dense_depth', 'image_data', 'calib', and 'gt_image' a
 The location of 'datasets', which is the folder containing all the information, must be the same as the path for 'test.sh' and 'train.sh' so that the program can access the information.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Prueba del modelo OFF-Net 
 los resultados obteenidos se presentan el en siguiente demo, la imagen de la izqierda es la imagen rgb, la imagen centras es una magen de profundidad y la imaen de la izquierda es la unidon de la imagen rgb, prediccion del modelo y una mascara que coloca en color verde las prediccioes del modelo para un espacio transitable por el robot. 
 
 
-
+<p align="center">
+<img src="doc/demo.gif" width="100%"/>demo 
+</p>
 
 
 
