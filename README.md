@@ -63,7 +63,7 @@ Additional Notes: Ensure that the *obs_detect.sh* script has execute permissions
 To collect data, two sensors are mounted on a structure located atop a [Hunter 2.0](https://docs.trossenrobotics.com/agilex_hunter_20_docs/). The first is a LiDAR [LIVOX-MID360](https://www.livoxtech.com/mid-360) and the second is a [ZED 2 Stereo Camera](https://store.stereolabs.com/en-gb/products/zed-2). These sensors are stacked one above the other, as illustrated in the following diagram:
 ```
                                                                     _____LiDAR______
-2.25 ft----------------- Camera height------------------------------__depth_camera__
+2.25 ft----------------- Camera height------------------------------__Depth_camera__
   |                                                                        |         
   |                                                                        |
   |                                                                        |
@@ -72,7 +72,7 @@ To collect data, two sensors are mounted on a structure located atop a [Hunter 2
   |                                                                        |
   |                                                                        |
   |                                                                        |
-Floor______________________________________________________________________|_________________________
+Floor______________________________________________________________________|___________________
 ```
 ### Extracting Depth images, RGB images and point clouds from a ROS2 topic in a synchronized manner.
 
