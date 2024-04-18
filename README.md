@@ -14,7 +14,7 @@ The project is founded on the precedent set by the following project ["ORFD: Off
 
 ## Introduction
 
-The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main), el dataset generado cuenta con un total de 34,684 datos y se ncuentra disponible en (polytunnel_dataset)[https://drive.google.com/file/d/1egS08WVoOzbN0vwSiknT8DT6aaipX_3V/view?usp=sharing]
+The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main), el dataset generado cuenta con un total de 34,684 datos y se ncuentra disponible en [polytunnel_dataset][https://drive.google.com/file/d/1egS08WVoOzbN0vwSiknT8DT6aaipX_3V/view?usp=sharing]
 
 El proyecto se divide en 3 secciones:
 
