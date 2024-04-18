@@ -2,11 +2,39 @@
 The project is founded on the precedent set by the following project ["ORFD: Off-Road-Freespace-Detection
 "](https://github.com/chaytonmin/Off-Road-Freespace-Detection/tree/main).
 
+
+
+
+
+
+
+
+
+
+
 ## Introduction
 
-The ORFD project is resumed and adapted to facilitate its implementation in the detection of paths in strawberry polytunnels. The repository with modifications to the original code is located at: ["Off-road-detection"](https://github.com/adri-gth/Off-road-detection/tree/main).
+The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: ["Off-road-detection"](https://github.com/adri-gth/Off-road-detection/tree/main).
 
-### Instruction for running the docker image
+El proyecto se divide en 3 secciones:
+
+Colectar datos 
+
+generacion de un politunel_dataset 
+
+prueba del modelo OFF-Net entrenado con el dataset de ORFD
+
+
+
+Lacarpeta que lleva por nombre "Free space segmentation" es el paquete genrado para la extraccion de infromacion de los bagfiles,  The 'docker' folder contains a shell file el cual se explica su uso mas adelante y en 
+el folder 'python_code' se encuentra el codigo para extraer el gt_image. 
+
+
+
+
+### Preparacion del entrono de trabajo 
+
+#### Instruction for running the docker image
 
  The 'docker' folder contains a shell file. This file must be downloaded to the host and executed using the following commands:
  
@@ -33,17 +61,31 @@ Additional Notes: Ensure that the 'obs_detect.sh' script has execute permissions
 
     chmod +x obs_detect.sh
 
-### Extracting depth, RGB images and point clouds 
 
-#### Obtaining Data in an Unsynchronized Manner
 
-To extract data in an unsynchronized manner, the launch file get_node_data.launch.py should be executed:
 
-    ros2 launch get_node_data get_node_data.launch.py
 
-For each node, the root path where the information is stored is:
 
-- '/home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/****'
+
+## Colectando datos  
+
+### indicaciones fisicas de como se colocaro los sensores en el robot para colectar los datos 
+
+
+
+
+
+
+
+### Extracting Depth images, RGB images and point clouds from a ROS2 topic in a synchronized manner.
+
+To obtain information in a synchronized manner (for the ORFD project, this is mandatory), the data_synchronizer node should be executed:
+ 
+    ros2 run free_space_segmentation sync_node 
+
+The root path where the information is stored is:
+
+- '/home/data/synchronized_dataset/datasets/ORFD/testing/sequence/****'
 
 The folders created to store the information are:
 
@@ -52,16 +94,52 @@ The folders created to store the information are:
     calib: calib 
     depth_image: dense_depth 
 
+    
+si no se re quiere extraer la infromacion de una manera sincronizada, entonces: 
 
-#### Obtaining Data in a Synchronized Manner
 
-To obtain information in a synchronized manner (for the ORFD project, this is mandatory), the data_synchronizer node should be executed:
- 
-    ros2 run my_py_pkg sync_node
+
+
+para extraer unicamente rgb_image se debe ejecutar el sigueinte comando 
+
+    ros2 run free_space_segmentation save_rgb_image
+
+este comando almacena las imagenes rgb y los datos de calibracion de la capara y sensor lidar
+
+The root path where the information is stored is:
+    /home/data/unsynchronized_dataset/datasets/ORFD/testing/image_data
+    /home/data/unsynchronized_dataset/datasets/ORFD/testing/calib'
+
+
+
+para extraer unicamente nueve de putos se debe ejecutar el sigueinte comando
+
+     ros2 run free_space_segmentation save_point_Cloud 
+
+este comando almecena la nueve de puntos generada por el sensor lidar como un archivo .bin 
 
 The root path where the information is stored is:
 
-- '/home/data/synchronized_dataset/datasets/ORFD/testing/sequence/****'
+'/home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/lidar_data'
+
+
+
+
+
+para estraer unicamente las imagens de profundidad se debe ejecutar el sigueinte comando
+
+      ros2 run free_space_segmentation save_depth_image 
+
+
+The root path where the information is stored is:
+     '/home/data/unsynchronized_dataset/datasets/ORFD/testing/sequence/dense_depth'
+
+
+
+
+
+
+
 
 
 ### Instructions for creating a training dataset
