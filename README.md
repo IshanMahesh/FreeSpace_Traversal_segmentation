@@ -14,7 +14,7 @@ The project is founded on the precedent set by the following project ["ORFD: Off
 
 ## Introduction
 
-The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: ["Off-road-detection"](https://github.com/adri-gth/Off-road-detection/tree/main).
+The ORFD project is resumed para probar its implementation in the detection of paths in polytunnels de dicados a la cosecha de fresa. The repository with modifications to the original code is located at: [Off-road-detection](https://github.com/adri-gth/Off-road-detection/tree/main).
 
 El proyecto se divide en 3 secciones:
 
@@ -26,7 +26,7 @@ prueba del modelo OFF-Net entrenado con el dataset de ORFD
 
 
 
-Lacarpeta que lleva por nombre "Free space segmentation" es el paquete genrado para la extraccion de infromacion de los bagfiles,  The 'docker' folder contains a shell file el cual se explica su uso mas adelante y en 
+the 'Free space segmentation' folder es el paquete genrado para la extraccion de infromacion de los bagfiles,  The 'docker' folder contains a shell file el cual se explica su uso mas adelante y en 
 el folder 'python_code' se encuentra el codigo para extraer el gt_image. 
 
 
@@ -71,6 +71,7 @@ Additional Notes: Ensure that the 'obs_detect.sh' script has execute permissions
 
 ### indicaciones fisicas de como se colocaro los sensores en el robot para colectar los datos 
 
+para clectar datos se utilizaron un LiDAR [LIVOX-MID360](https://www.livoxtech.com/mid-360) y [ZED 2 Stereo Camera](https://store.stereolabs.com/en-gb/products/zed-2) los cuales fueron colocados sobre un [Hunter 2.0](https://docs.trossenrobotics.com/agilex_hunter_20_docs/)
 
 
 
